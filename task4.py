@@ -1,31 +1,19 @@
 def fourth_task():
 	'''
-	Пользователь вводит целое положительное число.
-	Найдите самую большую цифру в числе. Для решения используйте цикл while и арифметические операции.
+		Пользователь вводит строку из нескольких слов, разделённых пробелами.
+		Вывести каждое слово с новой строки. Строки нужно пронумеровать.
+		Если слово длинное, выводить только первые 10 букв в слове.
 	'''
-
-	number = input('введите любое целое положительное число: ')
-
-	try:
-		clear_input = int(number)
-		if clear_input < 1:
-			print('число должно быть положительное')
-			return fourth_task()
-	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return fourth_task()
-
-	biggest_number = 0
-
-	while clear_input:
-			digit = clear_input % 10
-			if biggest_number < digit:
-				biggest_number = digit
-			clear_input = clear_input // 10
-
-	print(f'самая большая цифра в числе {biggest_number}')
-	return f'самая большая цифра в числе {biggest_number}'
+	input_long_string = input('введите строку из нескольких слов: ')
+	if len(input_long_string.split()) > 1:
+		input_long_string_list = input_long_string.split()
+	else:
+		print('Ошибка! Необходимо ввести несколько слов!\n')
+		return third_task()
+	for idx, item in enumerate(input_long_string_list):
+		print(idx + 1, f'{item.replace(".", "").replace(",", ""):.10s}')
+	print('\n')
+	return fourth_task()
 
 
 if __name__ == '__main__':

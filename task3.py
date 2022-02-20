@@ -1,22 +1,32 @@
 def third_task():
 	'''
-	Узнайте у пользователя число n. Найдите сумму чисел n + nn + nnn.
-	Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369
+		Пользователь вводит месяц в виде целого числа от 1 до 12.
+		Сообщить, к какому времени года относится месяц
+		(зима, весна, лето, осень). Напишите решения через list и dict.
+		:return: str(зима, весна, лето, осень)
 	'''
+	result = None
+	seasons = {
+		'осень': [9, 10, 11],
+		'зима': [12, 1, 2],
+		'весна': [3, 4, 5],
+		'лето': [6, 7, 8],
+	}
 
-	clear_input = 0
-	n = input('введите любое чесло: ')
-
+	input_month = input('введите номер месяца: ')
 	try:
-		clear_input = abs(int(n))
+		clear_input = int(input_month)
 	except Exception as err:
 		print('Вы ввели не число!')
 		print('Ошибка:', err)
 		return third_task()
 
-	print(f'{clear_input} + {clear_input*2} + {clear_input*3} = {clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)}')
-	return clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)
-
+	if clear_input:
+		for season, month_number_list in seasons.items():
+			if clear_input in month_number_list:
+				result = season
+	print(result)
+	return third_task()
 
 if __name__ == '__main__':
 	try:
