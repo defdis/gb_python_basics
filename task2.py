@@ -1,22 +1,19 @@
-def second_task():
+def second_task(list_to_change=[]):
 	'''
-	Пользователь вводит время в секундах. Переведите время в часы,
-	минуты, секунды и выведите в формате чч:мм:сс. Используйте форматирование строк.
-	:return str:: чч:мм:сс:
+		Для списка реализовать обмен значений соседних элементов.
+		Значениями обмениваются элементы с индексами 0 и 1, 2 и 3 и т. д.
+		При нечётном количестве элементов последний сохранить на своём месте.
+		Для заполнения списка элементов нужно использовать функцию input().
+		:return:
 	'''
-
-	clear_input = 0
-	input_sec = input('введите любое количевство секунд: ')
-	try:
-		clear_input = int(input_sec)
-	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return second_task()
-
-	hours = clear_input // 3600
-	minutes = (clear_input % 3600) // 60
-	seconds = (clear_input % 3600) % 60
+	input_element = input('введите что-нибудь: ')
+	list_to_change.extend(input_element.split())
+	print(list_to_change)
+	for idx, item in enumerate(list_to_change):
+		if idx % 2:
+			list_to_change[idx - 1], list_to_change[idx] = list_to_change[idx], list_to_change[idx - 1]
+	print(list_to_change)
+	return second_task(list_to_change)
 
 
 if __name__ == '__main__':
