@@ -1,51 +1,33 @@
-def seventh_task():
-	'''
-	7. Спортсмен занимается ежедневными пробежками.
-	В первый день его результат составил a километров.
-	Каждый день спортсмен увеличивал результат на 10% относительно предыдущего.
-	Требуется определить номер дня, на который результат спортсмена составит
-	не менее b километров. Программа должна принимать
-	значения параметров "a" и "b" и выводить одно натуральное число — номер дня.
+from math import factorial
 
-	Например: a = 2, b = 3.
-	Результат:
-	1-й день: 2
-	2-й день: 2,2
-	3-й день: 2,42
-	4-й день: 2,66
-	5-й день: 2,93
-	6-й день: 3,22
-	Ответ: на шестой день спортсмен достиг результата — не менее 3 км.
-	:return:
+
+def sixth_task():
+	'''
+	7. Реализовать генератор с помощью функции с ключевым словом yield,
+	создающим очередное значение. При вызове функции должен создаваться
+	объект-генератор. Функция вызывается следующим образом: for el in fact(n).
+	Она отвечает за получение факториала числа.
+	В цикле нужно выводить только первые n чисел, начиная с 1! и до n!.
+
+	Подсказка: факториал числа n — произведение чисел от 1 до n. Например, факториал четырёх 4! = 1 * 2 * 3 * 4 = 24.
 	'''
 
-	def input_to_int(string):
-		try:
-			clear_value = float(string)
-		except Exception as err:
-			print('Вы ввели не число!')
-			print('Ошибка:', err)
-			return seventh_task()
-		return clear_value
+	def fact(n):
+		for i in range(n):
+			yield f'{i+1}! = {factorial(i+1)}'
 
-	fitst_day_distanse_str = input('введите результат спортсмена в первый день (в километрах): ')
-	fitst_day_distanse = input_to_int(fitst_day_distanse_str)
-	target_distanse_str = input('введите необходимый результат спортсмена (в километрах): ')
-	target_distanse = input_to_int(target_distanse_str)
-	day = 1
-	distanse = fitst_day_distanse
-	while distanse <= target_distanse:
-		distanse += (distanse * 0.1)
-		day += 1
-	else:
-		print(f'на {day}й день спортсмен достигнет результата {target_distanse} км.')
-
-	return
+	try:
+		inp_n = int(input('введите n: '))
+		for el in fact(inp_n):
+			print(el)
+	except Exception as err:
+		print('введите число!')
+	return sixth_task()
 
 
 if __name__ == '__main__':
 	try:
-		seventh_task()
+		sixth_task()
 	except KeyboardInterrupt:
 		print('\n\nВы нажали Cntl + C\nпроцесс завершен!\n')
 		exit()

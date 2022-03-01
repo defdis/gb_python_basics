@@ -1,16 +1,27 @@
 def first_task():
 	'''
-	1. Поработайте с переменными, создайте несколько, выведите на экран.
-	Запросите у пользователя некоторые числа и строки
-	и сохраните в переменные, затем выведите на экран.
+	1. Реализовать скрипт, в котором должна быть предусмотрена функция расчёта
+	заработной платы сотрудника. Используйте в нём формулу:
+	(выработка в часах*ставка в час) + премия.
+	Во время выполнения расчёта для конкретных значений
+	необходимо запускать скрипт с параметрами.
 	'''
-	param1 = 'test'
-	param2 = 30
-	print(f'введите значения переменных, например: param1 => {param1}, param2 =>: {param2}')
-	user_param1 = input('param1:')
-	user_param2 = input('param2:')
-	print(f'вы ввели: param1 => {user_param1}, param2 => {user_param2}')
-	return
+
+	def payroll_accounting(productivity: float, hourly_rate: float, award: float):
+		payroll = (productivity * hourly_rate) + award
+		print(f'ЗП составляет: {payroll}')
+		return payroll
+
+	input_productivity = input('введите выработку в часах: ')
+	input_hourly_rate = input('введите ставку в час: ')
+	input_award = input('введите сумму премии: ')
+
+	try:
+		payroll_accounting(float(input_productivity), float(input_hourly_rate), float(input_award))
+	except Exception as err:
+		print('Вы ввели не число!')
+		print('Ошибка:', err)
+	return first_task()
 
 
 if __name__ == '__main__':

@@ -1,21 +1,12 @@
 def third_task():
 	'''
-	Узнайте у пользователя число n. Найдите сумму чисел n + nn + nnn.
-	Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369
+	3. Для чисел в пределах от 20 до 240 найти числа, кратные 20 или 21. Решите задание в одну строку.
+	Подсказка: используйте функцию range() и генератор.
 	'''
 
-	clear_input = 0
-	n = input('введите любое чесло: ')
-
-	try:
-		clear_input = abs(int(n))
-	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return third_task()
-
-	print(f'{clear_input} + {clear_input*2} + {clear_input*3} = {clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)}')
-	return clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)
+	gen = (num for num in range(20, 241) if num % 20 == 0 or num % 21 == 0)
+	print(list(gen))
+	return
 
 
 if __name__ == '__main__':
