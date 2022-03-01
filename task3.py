@@ -1,32 +1,26 @@
 def third_task():
 	'''
-		Пользователь вводит месяц в виде целого числа от 1 до 12.
-		Сообщить, к какому времени года относится месяц
-		(зима, весна, лето, осень). Напишите решения через list и dict.
-		:return: str(зима, весна, лето, осень)
+	3. Реализовать функцию my_func(), которая принимает три позиционных
+	аргумента и возвращает сумму наибольших двух аргументов.
 	'''
-	result = None
-	seasons = {
-		'осень': [9, 10, 11],
-		'зима': [12, 1, 2],
-		'весна': [3, 4, 5],
-		'лето': [6, 7, 8],
-	}
 
-	input_month = input('введите номер месяца: ')
+	def my_func(a: float, b: float, c: float) -> float:
+		list_val = [a, b, c]
+		print(list_val)
+		first_max = max(list_val)
+		list_val.remove(first_max)
+		second_max = max(list_val)
+		print(f'{first_max} + {second_max} = {first_max + second_max} ')
+		return first_max + second_max
+	first = input('введите число "а": ')
+	second = input('введите число "b": ')
+	third = input('введите число "c": ')
 	try:
-		clear_input = int(input_month)
+		my_func(float(first), float(second), float(third))
 	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return third_task()
-
-	if clear_input:
-		for season, month_number_list in seasons.items():
-			if clear_input in month_number_list:
-				result = season
-	print(result)
+		print('введите число! ::', err)
 	return third_task()
+
 
 if __name__ == '__main__':
 	try:

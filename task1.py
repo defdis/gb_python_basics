@@ -1,27 +1,34 @@
 def first_task():
 	'''
-		Создать список и заполнить его элементами различных типов данных.
-		Реализовать скрипт проверки типа данных каждого элемента. Использовать
-		функцию type() для проверки типа. Элементы списка можно не запрашивать
-		у пользователя, а указать явно, в программе.
+	1. Реализовать функцию, принимающую два числа (позиционные аргументы)
+	и выполняющую их деление. Числа запрашивать у пользователя,
+	предусмотреть обработку ситуации деления на ноль.
+	:return: list item type
+	'''
 
-		:return: list item type
-		'''
-	chaotic_list = [
-		"String", 12,
-		[4, 'xyz'],
-		(12, 32),
-		('255', '255', '255'),
-		'22',
-		{'name': 'Вася', "age": 22},
-		[item for item in range(0, 1023, 2)],
-		None
-	]
+	def clean_inpun_val(value):
+		try:
+			clear_input = float(value)
+		except Exception as err:
+			print('Вы ввели не число!')
+			print('Ошибка:', err)
+			clear_input = value
+		return clear_input
 
-	for item in chaotic_list:
-		print(f"item type::{type(item)}, item:: {item}")
+	def division(a, b):
+		try:
+			return a/b
+		except ZeroDivisionError:
+			print("на ноль делить нельзя")
+		return first_task()
 
-	return
+	input_divisible = input('введите делимое (число): ')
+	input_divider = input('введите делитель (число): ')
+	value_divisible = clean_inpun_val(input_divisible)
+	value_divider = clean_inpun_val(input_divider)
+	print(division(value_divisible, value_divider))
+	return first_task()
+
 
 if __name__ == '__main__':
 	try:

@@ -1,18 +1,28 @@
+import math
+
+
 def fourth_task():
 	'''
-		Пользователь вводит строку из нескольких слов, разделённых пробелами.
-		Вывести каждое слово с новой строки. Строки нужно пронумеровать.
-		Если слово длинное, выводить только первые 10 букв в слове.
+	4. Программа принимает действительное положительное число x и целое
+	отрицательное число y. Выполните возведение числа x в степень y.
+	Задание реализуйте в виде функции my_func(x, y). При решении
+	задания нужно обойтись без встроенной функции возведения числа в степень.
 	'''
-	input_long_string = input('введите строку из нескольких слов: ')
-	if len(input_long_string.split()) > 1:
-		input_long_string_list = input_long_string.split()
+
+	param1 = input('введите действительное положительное число x: ')
+	param2 = input('введите целое отрицательное число y: ')
+	try:
+		param1 = float(param1)
+		param2 = int(param2)
+	except Exception as err:
+		print('недопустимые значения')
+	if param1 <= 0:
+		print('x должно быть больше 0')
+	elif param2 >= 0:
+		print('y должно быть отрицательным')
 	else:
-		print('Ошибка! Необходимо ввести несколько слов!\n')
-		return third_task()
-	for idx, item in enumerate(input_long_string_list):
-		print(idx + 1, f'{item.replace(".", "").replace(",", ""):.10s}')
-	print('\n')
+		result = math.pow(param1, param2)
+		print('x**y=', result)
 	return fourth_task()
 
 
