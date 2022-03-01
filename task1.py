@@ -1,16 +1,33 @@
 def first_task():
 	'''
-	1. Поработайте с переменными, создайте несколько, выведите на экран.
-	Запросите у пользователя некоторые числа и строки
-	и сохраните в переменные, затем выведите на экран.
+	1. Реализовать функцию, принимающую два числа (позиционные аргументы)
+	и выполняющую их деление. Числа запрашивать у пользователя,
+	предусмотреть обработку ситуации деления на ноль.
+	:return: list item type
 	'''
-	param1 = 'test'
-	param2 = 30
-	print(f'введите значения переменных, например: param1 => {param1}, param2 =>: {param2}')
-	user_param1 = input('param1:')
-	user_param2 = input('param2:')
-	print(f'вы ввели: param1 => {user_param1}, param2 => {user_param2}')
-	return
+
+	def clean_inpun_val(value):
+		try:
+			clear_input = float(value)
+		except Exception as err:
+			print('Вы ввели не число!')
+			print('Ошибка:', err)
+			clear_input = value
+		return clear_input
+
+	def division(a, b):
+		try:
+			return a/b
+		except ZeroDivisionError:
+			print("на ноль делить нельзя")
+		return first_task()
+
+	input_divisible = input('введите делимое (число): ')
+	input_divider = input('введите делитель (число): ')
+	value_divisible = clean_inpun_val(input_divisible)
+	value_divider = clean_inpun_val(input_divider)
+	print(division(value_divisible, value_divider))
+	return first_task()
 
 
 if __name__ == '__main__':

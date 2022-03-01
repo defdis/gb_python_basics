@@ -1,31 +1,29 @@
+import math
+
+
 def fourth_task():
 	'''
-	Пользователь вводит целое положительное число.
-	Найдите самую большую цифру в числе. Для решения используйте цикл while и арифметические операции.
+	4. Программа принимает действительное положительное число x и целое
+	отрицательное число y. Выполните возведение числа x в степень y.
+	Задание реализуйте в виде функции my_func(x, y). При решении
+	задания нужно обойтись без встроенной функции возведения числа в степень.
 	'''
 
-	number = input('введите любое целое положительное число: ')
-
+	param1 = input('введите действительное положительное число x: ')
+	param2 = input('введите целое отрицательное число y: ')
 	try:
-		clear_input = int(number)
-		if clear_input < 1:
-			print('число должно быть положительное')
-			return fourth_task()
+		param1 = float(param1)
+		param2 = int(param2)
 	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return fourth_task()
-
-	biggest_number = 0
-
-	while clear_input:
-			digit = clear_input % 10
-			if biggest_number < digit:
-				biggest_number = digit
-			clear_input = clear_input // 10
-
-	print(f'самая большая цифра в числе {biggest_number}')
-	return f'самая большая цифра в числе {biggest_number}'
+		print('недопустимые значения')
+	if param1 <= 0:
+		print('x должно быть больше 0')
+	elif param2 >= 0:
+		print('y должно быть отрицательным')
+	else:
+		result = math.pow(param1, param2)
+		print('x**y=', result)
+	return fourth_task()
 
 
 if __name__ == '__main__':

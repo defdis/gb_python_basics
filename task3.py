@@ -1,21 +1,25 @@
 def third_task():
 	'''
-	Узнайте у пользователя число n. Найдите сумму чисел n + nn + nnn.
-	Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369
+	3. Реализовать функцию my_func(), которая принимает три позиционных
+	аргумента и возвращает сумму наибольших двух аргументов.
 	'''
 
-	clear_input = 0
-	n = input('введите любое чесло: ')
-
+	def my_func(a: float, b: float, c: float) -> float:
+		list_val = [a, b, c]
+		print(list_val)
+		first_max = max(list_val)
+		list_val.remove(first_max)
+		second_max = max(list_val)
+		print(f'{first_max} + {second_max} = {first_max + second_max} ')
+		return first_max + second_max
+	first = input('введите число "а": ')
+	second = input('введите число "b": ')
+	third = input('введите число "c": ')
 	try:
-		clear_input = abs(int(n))
+		my_func(float(first), float(second), float(third))
 	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return third_task()
-
-	print(f'{clear_input} + {clear_input*2} + {clear_input*3} = {clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)}')
-	return clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)
+		print('введите число! ::', err)
+	return third_task()
 
 
 if __name__ == '__main__':
