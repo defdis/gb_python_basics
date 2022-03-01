@@ -1,35 +1,17 @@
 def second_task():
 	'''
-	2. Выполнить функцию, которая принимает несколько параметров,
-	описывающих данные пользователя: имя, фамилия, год рождения,
-	город проживания, email, телефон. Функция должна принимать
-	параметры как именованные аргументы.
-	Осуществить вывод данных о пользователе одной строкой.
+	2. Представлен список чисел. Необходимо вывести элементы исходного списка, значения которых больше предыдущего элемента.
 
+	Подсказка: элементы, удовлетворяющие условию, оформить в виде списка. Для его формирования используйте генератор.
+	Пример исходного списка: [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55].
+	Результат: [12, 44, 4, 10, 78, 123].
 	:return:
 	'''
-
-	def task(name='', last_name='', year_of_birth='', city_of_residence='', email='', phone=''):
-		print(f'{name} {last_name}	{year_of_birth}	{city_of_residence}	{email}	{phone}')
-		return second_task()
-
-	name = input('введите имя: ')
-	last_name = input('введите фамилию: ')
-	year_of_birth = input('введите год рождения: ')
-	city_of_residence = input('введите город проживания: ')
-	email = input('введите email: ')
-	phone = input('введите телефон: ')
-
-	task(
-		name=name,
-		last_name=last_name,
-		year_of_birth=year_of_birth,
-		city_of_residence=city_of_residence,
-		email=email,
-		phone=phone
-	)
-
-	return second_task()
+	num_list = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
+	print('иходный список: ', num_list)
+	res_list = (item for idx, item in enumerate(num_list) if idx != 0 and item - num_list[idx - 1] > 0)
+	print('результирующий список: ', list(res_list))
+	return
 
 
 if __name__ == '__main__':

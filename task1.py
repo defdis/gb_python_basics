@@ -1,32 +1,26 @@
 def first_task():
 	'''
-	1. Реализовать функцию, принимающую два числа (позиционные аргументы)
-	и выполняющую их деление. Числа запрашивать у пользователя,
-	предусмотреть обработку ситуации деления на ноль.
-	:return: list item type
+	1. Реализовать скрипт, в котором должна быть предусмотрена функция расчёта
+	заработной платы сотрудника. Используйте в нём формулу:
+	(выработка в часах*ставка в час) + премия.
+	Во время выполнения расчёта для конкретных значений
+	необходимо запускать скрипт с параметрами.
 	'''
 
-	def clean_inpun_val(value):
-		try:
-			clear_input = float(value)
-		except Exception as err:
-			print('Вы ввели не число!')
-			print('Ошибка:', err)
-			clear_input = value
-		return clear_input
+	def payroll_accounting(productivity: float, hourly_rate: float, award: float):
+		payroll = (productivity * hourly_rate) + award
+		print(f'ЗП составляет: {payroll}')
+		return payroll
 
-	def division(a, b):
-		try:
-			return a/b
-		except ZeroDivisionError:
-			print("на ноль делить нельзя")
-		return first_task()
+	input_productivity = input('введите выработку в часах: ')
+	input_hourly_rate = input('введите ставку в час: ')
+	input_award = input('введите сумму премии: ')
 
-	input_divisible = input('введите делимое (число): ')
-	input_divider = input('введите делитель (число): ')
-	value_divisible = clean_inpun_val(input_divisible)
-	value_divider = clean_inpun_val(input_divider)
-	print(division(value_divisible, value_divider))
+	try:
+		payroll_accounting(float(input_productivity), float(input_hourly_rate), float(input_award))
+	except Exception as err:
+		print('Вы ввели не число!')
+		print('Ошибка:', err)
 	return first_task()
 
 

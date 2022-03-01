@@ -1,23 +1,48 @@
+from itertools import count, cycle
+
+
 def sixth_task():
 	'''
-		6. Реализовать функцию int_func(), принимающую слова из маленьких латинских букв
-		и возвращающую их же, но с прописной первой буквой. Например, print(int_func(‘text’)) -> Text.
+	6. Реализовать два небольших скрипта:
+	итератор, генерирующий целые числа, начиная с указанного;
+	итератор, повторяющий элементы некоторого списка, определённого заранее.
 
-		7. Продолжить работу над заданием. В программу должна попадать строка из слов,
-		разделённых пробелом. Каждое слово состоит из латинских букв в нижнем регистре.
-		Нужно сделать вывод исходной строки, но каждое слово должно начинаться с заглавной буквы.
-		Используйте написанную ранее функцию int_func().
-
+	Подсказка: используйте функцию count() и cycle() модуля itertools.
+	Обратите внимание, что создаваемый цикл не должен быть бесконечным.
+	Предусмотрите условие его завершения. #### Например, в первом задании
+	выводим целые числа, начиная с 3. При достижении числа 10 — завершаем цикл.
+	Вторым пунктом необходимо предусмотреть условие,
+	при котором повторение элементов списка прекратится.
 	'''
 
-	def int_func(words_str: str):
-		words_capitalized = ' '.join((word.capitalize() for word in words_str.split(' ')))
-		print(words_capitalized)
+	def first_iterator():
+		start_num = input('укажите начало итератора (число)')
+		try:
+			start_num = int(start_num)
+		except Exception as err:
+			print('укажите число!')
+			sixth_task()
 
-	input_name = input('введите слова из маленьких латинских букв: ')
-	int_func(input_name)
+		iterator = (count(start=start_num))
 
-	return sixth_task()
+		for idx in range(10):
+			val = next(iterator)
+			print(val)
+			if val == 10:
+				break
+
+	def second_iterator():
+		print('для выхода введите q')
+		list_num = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
+		iterator = cycle(list_num)
+		exit_flag = False
+		while exit_flag != 'q':
+			print(next(iterator), end='')
+			exit_flag = input()
+
+	first_iterator()
+	second_iterator()
+	return
 
 
 if __name__ == '__main__':
