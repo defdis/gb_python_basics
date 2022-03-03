@@ -1,36 +1,54 @@
-from math import factorial
+import json
 
 
-def sixth_task():
+def seventh_task():
 	'''
-	7. Реализовать генератор с помощью функции с ключевым словом yield,
-	создающим очередное значение. При вызове функции должен создаваться
-	объект-генератор. Функция вызывается следующим образом: for el in fact(n).
-	Она отвечает за получение факториала числа.
-	В цикле нужно выводить только первые n чисел, начиная с 1! и до n!.
+	7. Создать вручную и заполнить несколькими строками текстовый файл,
+	в котором каждая строка будет содержать данные о фирме:
+	название, форма собственности, выручка, издержки.
 
-	Подсказка: факториал числа n — произведение чисел от 1 до n. Например, факториал четырёх 4! = 1 * 2 * 3 * 4 = 24.
+	Пример строки файла: firm_1 ООО 10000 5000.
+	Необходимо построчно прочитать файл, вычислить прибыль каждой компании,
+	а также среднюю прибыль. Если фирма получила убытки, в расчёт средней прибыли её не включать.
+
+	Далее реализовать список. Он должен содержать словарь с фирмами и их прибылями,
+	а также словарь со средней прибылью. Если фирма получила убытки, также добавить её в словарь (со значением убытков).
+
+	Пример списка: [{“firm_1”: 5000, “firm_2”: 3000, “firm_3”: 1000}, {“average_profit”: 2000}].
+	Итоговый список сохранить в виде json-объекта в соответствующий файл.
+
+	Пример json-объекта:
+	[{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
+	Подсказка: использовать менеджер контекста.
 	'''
+	all_profit = 0
+	counter = 0
+	profit_dict = {}
+	with open('seventh_task.txt', "r") as file:
+		print(f' name		 	ownership		revenue 		costs		    profit')
+		print('-'*80)
+		for line in file.readlines():
+			name, ownership, revenue, costs = line.split()
+			profit = float(revenue) - float(costs)
+			profit_dict[name] = profit
+			if profit > 0:  # а если 0 включать или нет, по условию не понятно?
+				counter += 1
+				all_profit += profit
+			print(f'{name}			{ownership} 			{revenue}			{costs}			{profit}')
+	average_profit_dict = {
+		'average_profit': all_profit / counter
+	}
+	result_list = [profit_dict, average_profit_dict]
+	print(result_list)
+	with open('seventh_task_result.json', 'w') as wr_file:
+		json.dump(result_list, wr_file, ensure_ascii=True, indent=4)
 
-	def fact(n):
-		for i in range(n):
-			yield f'{i+1}! = {factorial(i+1)}'
-
-	try:
-		inp_n = int(input('введите n: '))
-		for el in fact(inp_n):
-			print(el)
-	except Exception as err:
-		print('введите число!')
-	return sixth_task()
+	return
 
 
 if __name__ == '__main__':
 	try:
-		sixth_task()
+		seventh_task()
 	except KeyboardInterrupt:
 		print('\n\nВы нажали Cntl + C\nпроцесс завершен!\n')
 		exit()
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
