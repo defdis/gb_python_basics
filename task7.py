@@ -1,44 +1,47 @@
+import json
+
+
 def seventh_task():
 	'''
-	7. Спортсмен занимается ежедневными пробежками.
-	В первый день его результат составил a километров.
-	Каждый день спортсмен увеличивал результат на 10% относительно предыдущего.
-	Требуется определить номер дня, на который результат спортсмена составит
-	не менее b километров. Программа должна принимать
-	значения параметров "a" и "b" и выводить одно натуральное число — номер дня.
+	7. Создать вручную и заполнить несколькими строками текстовый файл,
+	в котором каждая строка будет содержать данные о фирме:
+	название, форма собственности, выручка, издержки.
 
-	Например: a = 2, b = 3.
-	Результат:
-	1-й день: 2
-	2-й день: 2,2
-	3-й день: 2,42
-	4-й день: 2,66
-	5-й день: 2,93
-	6-й день: 3,22
-	Ответ: на шестой день спортсмен достиг результата — не менее 3 км.
-	:return:
+	Пример строки файла: firm_1 ООО 10000 5000.
+	Необходимо построчно прочитать файл, вычислить прибыль каждой компании,
+	а также среднюю прибыль. Если фирма получила убытки, в расчёт средней прибыли её не включать.
+
+	Далее реализовать список. Он должен содержать словарь с фирмами и их прибылями,
+	а также словарь со средней прибылью. Если фирма получила убытки, также добавить её в словарь (со значением убытков).
+
+	Пример списка: [{“firm_1”: 5000, “firm_2”: 3000, “firm_3”: 1000}, {“average_profit”: 2000}].
+	Итоговый список сохранить в виде json-объекта в соответствующий файл.
+
+	Пример json-объекта:
+	[{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
+	Подсказка: использовать менеджер контекста.
 	'''
-
-	def input_to_int(string):
-		try:
-			clear_value = float(string)
-		except Exception as err:
-			print('Вы ввели не число!')
-			print('Ошибка:', err)
-			return seventh_task()
-		return clear_value
-
-	fitst_day_distanse_str = input('введите результат спортсмена в первый день (в километрах): ')
-	fitst_day_distanse = input_to_int(fitst_day_distanse_str)
-	target_distanse_str = input('введите необходимый результат спортсмена (в километрах): ')
-	target_distanse = input_to_int(target_distanse_str)
-	day = 1
-	distanse = fitst_day_distanse
-	while distanse <= target_distanse:
-		distanse += (distanse * 0.1)
-		day += 1
-	else:
-		print(f'на {day}й день спортсмен достигнет результата {target_distanse} км.')
+	all_profit = 0
+	counter = 0
+	profit_dict = {}
+	with open('seventh_task.txt', "r") as file:
+		print(f' name		 	ownership		revenue 		costs		    profit')
+		print('-'*80)
+		for line in file.readlines():
+			name, ownership, revenue, costs = line.split()
+			profit = float(revenue) - float(costs)
+			profit_dict[name] = profit
+			if profit > 0:  # а если 0 включать или нет, по условию не понятно?
+				counter += 1
+				all_profit += profit
+			print(f'{name}			{ownership} 			{revenue}			{costs}			{profit}')
+	average_profit_dict = {
+		'average_profit': all_profit / counter
+	}
+	result_list = [profit_dict, average_profit_dict]
+	print(result_list)
+	with open('seventh_task_result.json', 'w') as wr_file:
+		json.dump(result_list, wr_file, ensure_ascii=True, indent=4)
 
 	return
 
@@ -49,6 +52,3 @@ if __name__ == '__main__':
 	except KeyboardInterrupt:
 		print('\n\nВы нажали Cntl + C\nпроцесс завершен!\n')
 		exit()
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

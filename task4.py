@@ -1,31 +1,20 @@
 def fourth_task():
 	'''
-	Пользователь вводит целое положительное число.
-	Найдите самую большую цифру в числе. Для решения используйте цикл while и арифметические операции.
+	4. Создать (не программно) текстовый файл со следующим содержимым:
+	One — 1
+	Two — 2
+	Three — 3
+	Four — 4
+	Напишите программу, открывающую файл на чтение и считывающую построчно данные.
+	При этом английские числительные должны заменяться на русские.
+	Новый блок строк должен записываться в новый текстовый файл.
 	'''
 
-	number = input('введите любое целое положительное число: ')
-
-	try:
-		clear_input = int(number)
-		if clear_input < 1:
-			print('число должно быть положительное')
-			return fourth_task()
-	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return fourth_task()
-
-	biggest_number = 0
-
-	while clear_input:
-			digit = clear_input % 10
-			if biggest_number < digit:
-				biggest_number = digit
-			clear_input = clear_input // 10
-
-	print(f'самая большая цифра в числе {biggest_number}')
-	return f'самая большая цифра в числе {biggest_number}'
+	with open('fourth_task_input.txt', "r") as file_read, open('fourth_task_output.txt', "a") as file_write:
+		for row in file_read:
+			f_str = row.replace('One', 'Один').replace('Two', 'Два').replace('Three', 'Три').replace('Four', 'Четыре')
+			file_write.write(f_str)
+	return
 
 
 if __name__ == '__main__':

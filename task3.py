@@ -1,21 +1,40 @@
 def third_task():
 	'''
-	Узнайте у пользователя число n. Найдите сумму чисел n + nn + nnn.
-	Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369
+	3. Создать текстовый файл (не программно).
+	Построчно записать фамилии сотрудников и величину их
+	окладов (не менее 10 строк). Определить, кто из сотрудников
+	имеет оклад менее 20 тысяч, вывести фамилии этих сотрудников.
+	Выполнить подсчёт средней величины дохода сотрудников.
+
+	Пример файла:
+
+	Иванов 23543.12
+	Петров 13749.32
 	'''
 
-	clear_input = 0
-	n = input('введите любое чесло: ')
-
-	try:
-		clear_input = abs(int(n))
-	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return third_task()
-
-	print(f'{clear_input} + {clear_input*2} + {clear_input*3} = {clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)}')
-	return clear_input + int(str(clear_input)*2) + int(str(clear_input)*3)
+	stuff = [
+		'Иванов 23543.12',
+		'Петров 13749.32',
+		'Сидоров 32331.14',
+		'Попов 23543.12',
+		'Смирнов 13749.32',
+		'Семенов 32331.14',
+		'Токарь 18567.88',
+		'Романенко 32123.32',
+		'Автов 11432.95',
+		'Рыскаль 72451.31',
+		'Кипелов 4513.34',
+	]
+	with open('second_task.txt', 'a') as file:
+		salary_sum = 0
+		for row in stuff:
+			lastname, salary = row.split(' ')
+			salary_sum += float(salary)
+			if float(salary) < 20000:
+				print(lastname)
+			file.write(row)
+		print(f'средняя величина дохода сотрудников: {salary_sum / len(stuff)}')
+	return
 
 
 if __name__ == '__main__':

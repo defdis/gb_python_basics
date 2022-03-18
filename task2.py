@@ -1,22 +1,17 @@
 def second_task():
 	'''
-	Пользователь вводит время в секундах. Переведите время в часы,
-	минуты, секунды и выведите в формате чч:мм:сс. Используйте форматирование строк.
-	:return str:: чч:мм:сс:
+	2. Создать текстовый файл (не программно),
+	сохранить в нём несколько строк, выполнить
+	подсчёт строк и слов в каждой строке.
 	'''
-
-	clear_input = 0
-	input_sec = input('введите любое количевство секунд: ')
-	try:
-		clear_input = int(input_sec)
-	except Exception as err:
-		print('Вы ввели не число!')
-		print('Ошибка:', err)
-		return second_task()
-
-	hours = clear_input // 3600
-	minutes = (clear_input % 3600) // 60
-	seconds = (clear_input % 3600) % 60
+	with open('second_task.txt', 'r') as file:
+		rows = file.readlines()
+		print(f'всего строк: {len(rows)}')
+		line = 0
+		for row in rows:
+			line += 1
+			print(f'в строке {line} {len([word for word in row.split(" ") if len(word) > 2])} слов')
+	return
 
 
 if __name__ == '__main__':
